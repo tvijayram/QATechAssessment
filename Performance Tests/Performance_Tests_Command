@@ -1,0 +1,13 @@
+PreRequirements :
+
+    JAVA, JMETER v5.2
+
+    Run performance test
+        jmeter -n -t <JMX_FILE_PATH> -JlatlonCSV=<LATLON_CSV_PATH> -JpostcodeCSV=<POSTCODE_CSV_PATH> -l <DIR>/outputfile.jtl
+
+Enter the below command on the command prompt:
+
+    >>jmeter -n -t performanceTests/APIPerformanceScript.jmx -JlatlonCSV=performanceTests/LatLon.csv -JpostcodeCSV=performanceTests/PostCodes.csv -l performanceTests/perfoutput_555.jtl
+
+To produce results in HTML format use below command,
+    >> jmeter -g performanceTests/perfoutput_555.jtl -o performanceTests/html
