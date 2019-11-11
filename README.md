@@ -1,4 +1,4 @@
-# QTechChallenge
+# QATechAssignment
 
 ## Build and Run Environment for the UI & API Automation Task
 
