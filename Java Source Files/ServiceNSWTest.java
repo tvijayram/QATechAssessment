@@ -35,7 +35,7 @@ public class ServiceNSWTest {
 
 		// Writing a text "Apply for a number plate" in the search box
 		String searchTerm = "Apply for a number plate";
-		searchBox.sendKeys(searchTerm);
+		searchBox.sendKeys(searchTerm, Keys.TAB);
 		searchBox.sendKeys(Keys.ENTER);
 
 		// Need to Validate the navigation to appropriate page
@@ -70,21 +70,24 @@ public class ServiceNSWTest {
 		WebElement locatorSearchBox = driver.findElement(By.id("locatorTextSearch"));
         
 		// Writing a text "Sydney 2000" in the search box
-		locatorSearchBox.sendKeys(suburb);
+		locatorSearchBox.sendKeys(suburb, Keys.TAB);
 		locatorSearchBox.sendKeys(Keys.ENTER);
 
-		// Find the Service Centre element on the web page
-		//WebElement Element = driver.findElement(By.linkText(ServiceCentre));
-		// This will scroll the page till the element is found
-		//JavascriptExecutor js = (JavascriptExecutor) driver;
-		//js.executeScript("arguments[0].scrollIntoView();", Element);
-
-		boolean  locationExist = driver.getPageSource().contains(serviceCentre);
+		boolean  locationExist;
+		
+		List<WebElement> locations = driver.findElements(By.xpath(("//*[@id=\"locatorListView\"]/div/div/div/div")));
+      		for (int i = 1; i <= locations.size(); i++) {
+           		String href = driver.findElement(By.xpath("//*[@id=\"locatorListView\"]/div/div/div/div[" + i + "]/a")).getText();
+           		if (serviceCentre.equalsIgnoreCase(href))
+            		    locationExist =  true;
+        	}
 		
 		Assert.assertTrue(locationExist);		
 	}
 	
-	@AfterTest
+	
+	
+    @AfterTest
     public void afterTestDemo()
     {
 		driver.close();       
